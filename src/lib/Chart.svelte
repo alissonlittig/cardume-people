@@ -1,6 +1,7 @@
 <script>
-  import { Chart, registerables } from 'chart.js';
-  Chart.register(...registerables);
+  import { Chart, LineController, BarController, DoughnutController, LineElement, BarElement, PointElement, ArcElement, CategoryScale, LinearScale, Filler, Tooltip, Legend } from 'chart.js';
+  Chart.register(LineController, BarController, DoughnutController, LineElement, BarElement, PointElement, ArcElement, CategoryScale, LinearScale, Filler, Tooltip, Legend);
+  Chart.defaults.animation = false;
   Chart.defaults.font.family = 'ui-sans-serif, system-ui, "Segoe UI", sans-serif';
   Chart.defaults.color = '#4b5b5d';
   let { config, label = '' } = $props();
