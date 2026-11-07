@@ -73,8 +73,9 @@
     options: { plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid, ticks: { maxTicksLimit: 5 } } } },
   });
   const heatBg = (v) => `rgba(228,87,46,${(0.08 + (v / heatMax) * 0.85).toFixed(2)})`;
-  const arrow = (a, b) => (b == null ? '' : a > b ? '▲' : '▼');
-  const delta = (a, b) => (b == null ? 'no prior period' : `${a > b ? '+' : ''}${(a - b).toFixed(1)} pts vs prior ${span} mo`);
+  const flat = (a, b) => Math.abs(a - b) < 0.05;
+  const arrow = (a, b) => (b == null || flat(a, b) ? '' : a > b ? '▲' : '▼');
+  const delta = (a, b) => (b == null ? 'no prior period' : flat(a, b) ? `flat vs prior ${span} mo` : `${a > b ? '+' : ''}${(a - b).toFixed(1)} pts vs prior ${span} mo`);
   const pick = (id) => (dept = dept === id ? 'all' : id);
 </script>
 
